@@ -44,7 +44,7 @@ def create_car(cars: SportsCar) -> dict:
 
 
 @cars_router.put('/sportcars/{id}', tags=['cars'], response_model=dict, status_code=200)
-def update_movie(id: int, car: SportsCar)-> dict:
+def update_car(id: int, car: SportsCar)-> dict:
     db = Session()
     result = SportsCarService(db).get_car(id)
     if not result:
@@ -55,7 +55,7 @@ def update_movie(id: int, car: SportsCar)-> dict:
 
 
 @cars_router.delete('/sportcars/{id}', tags=['cars'], response_model=dict, status_code=200)
-def delete_movie(id: int)-> dict:
+def delete_car(id: int)-> dict:
     db = Session()
     result: SportCarModel = db.query(SportCarModel).filter(SportCarModel.id == id).first()
     if not result:
