@@ -20,8 +20,17 @@ class SportsCarService():
         result = self.db.query(SportsCarModel).filter(SportsCarModel.make == make).all()
         return result
 
+    def get_cars_by_year(self, year: int):
+        result = self.db.query(SportsCarModel).filter(SportsCarModel.year == year).all()
+        return result
+
     def create_car(self, car: SportsCar):
-        new_car = SportsCarModel(**car.dict())
+        if car.id is None:
+            car_dict = car.dict()
+            car_dict.pop('id')
+            new_car = SportsCarModel(**car_dict)
+        else:
+            new_car = SportsCarModel(**car.dict())
         self.db.add(new_car)
         self.db.commit()
         return

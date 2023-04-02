@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 
 
 class SportsCar(BaseModel):
-    id: int = Field(ge=1)
+    id: int = None
     make: str = Field(min_length=2, max_length=30)
     model: str = Field(min_length=2, max_length=30)
     year: int = Field(ge=1900, le=2022)
@@ -20,4 +20,3 @@ class SportsCar(BaseModel):
                 "top_speed": 202.0
             }
         }
-

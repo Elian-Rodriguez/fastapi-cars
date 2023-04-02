@@ -13,10 +13,11 @@ from schemas.car import SportsCar
 cars_router = APIRouter()
 
 
+
 @cars_router.get('/sportcars', tags=['cars'], response_model=List[SportsCar], status_code=200, dependencies=[Depends(JWTBearer())])
 def get_cars() -> List[SportsCar]:
     db = Session()
-    result = SportsCarService(db).get_cars
+    result = SportsCarService(db).get_cars()
     return JSONResponse(status_code=200, content=jsonable_encoder(result))
 
 
@@ -32,7 +33,7 @@ def get_car(id: int = Path(ge=1, le=2000)) -> SportsCar:
 @cars_router.get('/sportcars/', tags=['cars'], response_model=List[SportsCar])
 def get_cars_by_year(year: int = Query(ge=1900, le=2022)) -> List[SportsCar]:
     db = Session()
-    result = SportsCarService(db).get_cars_by_category(year)
+    result = SportsCarService(db).get_cars_by_year(year)  
     return JSONResponse(status_code=200, content=jsonable_encoder(result))
 
 
