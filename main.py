@@ -28,15 +28,15 @@ def my_task():
     load_data_cars()
     
 # Decorar la función con @background_task
-@app.post("/automatic-task")
+@app.post("/automatic-task" , tags=['jobs'])
 async def ejecutar_tarea(background_tasks: BackgroundTasks):
     background_tasks.add_task(my_task)
     
     
 
-@app.get('/', tags=['home'])
+@app.get('/', tags=['ping'])
 def message():
-    return HTMLResponse('<h1>Hello world</h1>')
+    return HTMLResponse('<h1>I am alive<h1>')
 
 
 # Crear un objeto Scheduler y configurarlo para que ejecute la tarea cada 30 minutos
