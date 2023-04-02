@@ -16,9 +16,20 @@ cars_router = APIRouter()
 
 @cars_router.get('/sportcars', tags=['cars'], response_model=List[SportsCar], status_code=200, dependencies=[Depends(JWTBearer())])
 def get_cars() -> List[SportsCar]:
+    """
+    Obtiene la lista de todos los coches deportivos registrados.
+
+    Retorna una lista de objetos SportsCar que contienen la información de cada coche deportivo.
+
+    Se requiere autenticación JWT para acceder a esta ruta. El usuario para la autenticación es admin@gmail.com con contraseña admin.
+
+    Returns:
+        List[SportsCar]: Una lista de objetos SportsCar.
+    """
     db = Session()
     result = SportsCarService(db).get_cars()
     return JSONResponse(status_code=200, content=jsonable_encoder(result))
+
 
 
 @cars_router.get('/sportcars/{id}', tags=['cars'], response_model=SportsCar)

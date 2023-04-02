@@ -8,8 +8,10 @@ from utils.cars import load_data_cars
 from apscheduler.schedulers.background import BackgroundScheduler
 
 app = FastAPI()
+
 app.title = "Autos Deportivos con  FastAPI"
 app.version = "0.0.1"
+
 
 app.add_middleware(ErrorHandler)
 
@@ -30,6 +32,10 @@ def my_task():
 # Decorar la función con @background_task
 @app.post("/automatic-task" , tags=['jobs'])
 async def ejecutar_tarea(background_tasks: BackgroundTasks):
+    """
+    Ejecuta una tarea automática que actualiza la base de datos de coches con los datos por defecto
+    Esta se ejecuta cada 30 minutos dejando en base de datos 13 vehiculos en lista
+    """
     background_tasks.add_task(my_task)
     
     
