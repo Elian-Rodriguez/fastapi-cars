@@ -21,7 +21,7 @@ def get_cars() -> List[SportsCar]:
 
     Retorna una lista de objetos SportsCar que contienen la información de cada coche deportivo.
 
-    Se requiere autenticación JWT para acceder a esta ruta. El usuario para la autenticación es admin@gmail.com con contraseña admin.
+    Se requiere autenticación JWT para acceder a esta ruta.
 
     Returns:
         List[SportsCar]: Una lista de objetos SportsCar.
