@@ -10,7 +10,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 app = FastAPI()
 
 app.title = "Autos Deportivos con  FastAPI"
-app.version = "0.0.1"
+app.version = "0.0.6"
 
 
 app.add_middleware(ErrorHandler)

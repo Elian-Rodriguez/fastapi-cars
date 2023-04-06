@@ -21,14 +21,14 @@ async def  register(user: User):
         "email": user.email,
         "password": user.password,
     })
-    #print(f"--------------- {type(res)}    ---------- {res}")
+
     return JSONResponse(status_code=200, content={"mesages":"Por favor falidar su correo electronico para confirmar login"})
     
 
 @user_router.post('/login', tags=['auth'])
 async def login(user: User):
     """
-       Se requiere autenticación JWT para acceder a esta ruta. El usuario para la autenticación es admin@gmail.com con contraseña admin.
+       Se requiere autenticación JWT para acceder a esta ruta sportcars.
     """
     if user.email == "admin@gmail.com" and user.password == "admin":
         token: str = create_token(user.dict())
